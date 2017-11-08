@@ -68,7 +68,7 @@ obstacle = 1
 
 # when obstacle=1, the power and
 # running time of the first turn
-curvePr = 20
+curvePr = 25
 curveTr = 0.2
 
 try:
@@ -85,6 +85,10 @@ try:
                 rightCurveTurn(curvePr, curveTr)
             elif get_tracking == [1,1,1,1,0] or [1,1,1,0,0] :
                 rightCurveTurn(curvePr+10, curveTr)
+            elif get_tracking == [0,0,0,0,0] :
+                stop()
+                sleep(1)
+                break
             else :
                 go_forward_any(35)
             print("Obstacle =",obstacle)
@@ -99,6 +103,7 @@ try:
             go_forward(35, 1)
             leftCurveTurn(curvePr+30, curveTr+0.3)
             go_forward(35,2)
+            obstacle += 1
             continue
 
 
