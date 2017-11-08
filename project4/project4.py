@@ -38,7 +38,7 @@ from TurnModule import *
 # =======================================================================
 # import trackingModule() method
 # =======================================================================
-from trackingModule import
+from trackingModule import *
 
 
 # =======================================================================
@@ -77,13 +77,13 @@ try:
         get_distance = getDistance()
         print("Distance =", get_distance)
         if get_distance >= dis :
-            if get_tracking == [0,1,1,1,1] :
+            if get_tracking == [0,1,1,1,1] or [0,0,1,1,1]:
                 leftCurveTurn(curvePr+10, curveTr)
             elif get_tracking == [1,0,1,1,1] :
                 leftCurveTurn(curvePr, curveTr)
             elif get_tracking == [1,1,1,0,1] :
                 rightCurveTurn(curvePr, curveTr)
-            elif get_tracking == [1,1,1,1,0] :
+            elif get_tracking == [1,1,1,1,0] or [1,1,1,0,0] :
                 rightCurveTurn(curvePr+10, curveTr)
             else :
                 go_forward_any(35)
