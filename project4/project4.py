@@ -93,15 +93,15 @@ try:
                 go_forward_any(35)
             print("Obstacle =",obstacle)
         else :
-            rightCurveTurn(curvePr+60, curveTr+0.5)
+            rightCurveTurn(curvePr+30, curveTr+0.5)
             stop()
             sleep(1)
             go_forward(35, 1)
-            leftCurveTurn(curvePt+60, curveTr+0.5)
+            leftCurveTurn(curvePr+30, curveTr+0.5)
             stop()
             sleep(1)
             go_forward(35, 1)
-            leftCurveTurn(curvePr+30, curveTr+0.3)
+            leftCurveTurn(curvePr+10, curveTr+0.3)
             go_forward(35,2)
             obstacle += 1
             continue

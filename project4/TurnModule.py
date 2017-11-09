@@ -192,7 +192,7 @@ def rightCurveTurn(speed, running_time):
     GPIO.output(MotorLeft_PWM, GPIO.HIGH)
     rightmotor(forward0)
     GPIO.output(MotorRight_PWM, GPIO.HIGH)
-    LeftPwm.ChangeDutyCycle(speed+40)
+    LeftPwm.ChangeDutyCycle(speed+20)
     RightPwm.ChangeDutyCycle(speed)
     time.sleep(running_time)
 
@@ -202,5 +202,5 @@ def leftCurveTurn(speed, running_time):
     rightmotor(forward0)
     GPIO.output(MotorRight_PWM, GPIO.HIGH)
     LeftPwm.ChangeDutyCycle(speed)
-    RightPwm.ChangeDutyCycle(speed+40)
+    RightPwm.ChangeDutyCycle(speed+20)
     time.sleep(running_time)
