@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIOA
+import RPi.GPIO as GPIO
 
 def scan():
     left_most_led = 16
