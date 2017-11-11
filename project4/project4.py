@@ -68,24 +68,24 @@ obstacle = 1
 
 # when obstacle=1, the power and
 # running time of the first turn
-curvePr = 25
-curveTr = 0.2
+curvePr = 20
+curveTr = 0.3
 
 try:
     while True:
-        get_tracking = scan() #get tracking list ex) [1,1,1,1,1], [0,0,0,0,0]
-        get_distance = getDistance()
+        get_tracking = scan() #get tracking list ex) ["1","1","1","1","1"], ["0","0","0","0","0"]
+        get_distance = getDistance() #get distance between car and obstacle
         print("Distance =", get_distance)
         if get_distance >= dis :
-            if get_tracking == [0,1,1,1,1] or [0,0,1,1,1]:
-                leftCurveTurn(curvePr+10, curveTr)
-            elif get_tracking == [1,0,1,1,1] :
+            if get_tracking == ["0","1","1","1","1"] or get_tracking == ["0","0","1","1","1"]:
+                leftCurveTurn(curvePr, curveTr+ 0.2)
+            elif get_tracking == ["1","0","1","1","1"] :
                 leftCurveTurn(curvePr, curveTr)
-            elif get_tracking == [1,1,1,0,1] :
+            elif get_tracking == ["1","1","1","0","1"] :
                 rightCurveTurn(curvePr, curveTr)
-            elif get_tracking == [1,1,1,1,0] or [1,1,1,0,0] :
-                rightCurveTurn(curvePr+10, curveTr)
-            elif get_tracking == [0,0,0,0,0] :
+            elif get_tracking == ["1","1","1","1","0"] or get_tracking == ["1","1","1","0","0"] :
+                rightCurveTurn(curvePr, curveTr+ 0.2)
+            elif get_tracking == ["0","0","0","0","0"] :
                 stop()
                 sleep(1)
                 break
