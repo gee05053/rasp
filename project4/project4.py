@@ -1,12 +1,3 @@
-######################################################################
-### Date: 2017/10/5
-### file name: project3_student.py
-### Purpose: this code has been generated for the three-wheeled moving
-###         object to perform the project3 with ultra sensor
-###         swing turn, and point turn
-### this code is used for the student only
-######################################################################
-
 # =======================================================================
 # import GPIO library and time module
 # =======================================================================
