@@ -1,4 +1,4 @@
-from easy_rascar import RasCar
+from easy_rascar import RasCar, TrackingSensor, UltraSonicSensor
 import time
 
 car = RasCar()
@@ -7,8 +7,8 @@ obstacle = 1
 
 try :
     while True :
-        get_tracking = TrackingSensor.scan()
-        get_distance = UltraSonicSensor.get_distance()
+        get_tracking = car.trackingSensor.scan()
+        get_distance = car.ultraSonicSensor.get_distance()
         print("Distance :", get_distance)
         if get_distance > dis :
             if get_tracking == ["0","1","1","1","1"] or get_tracking == ["0","0","1","1","1"] :
@@ -41,4 +41,4 @@ try :
             time.sleep(1)
             car.run("F", 35, 0.5)
 except KeyboardInterrupt :
-    pwm_low() 
+    car.stop() 
