@@ -1,7 +1,7 @@
-from Rascar import Rascar
+from easy_rascar import RasCar
 import time
 
-car = Rascar()
+car = RasCar()
 dis = 20
 obstacle = 1
 
@@ -41,4 +41,4 @@ try :
             time.sleep(1)
             car.run("F", 35, 0.5)
 except KeyboardInterrupt :
-    pwm_low()
+    pwm_low() 
