@@ -40,3 +40,5 @@ try :
             car.stop()
             time.sleep(1)
             car.run("F", 35, 0.5)
+except KeyboardInterrupt :
+    pwm_low()
