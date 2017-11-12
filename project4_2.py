@@ -7,7 +7,7 @@ obstacle = 1
 
 try :
     while True :
-        get_tracking = TrackingSensor,scan()
+        get_tracking = TrackingSensor.scan()
         get_distance = UltraSonicSensor.get_distance()
         print("Distance :", get_distance)
         if get_distance > dis :

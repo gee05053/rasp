@@ -153,7 +153,7 @@ class RasCar:
         lines_list = file_obj.readlines()
         for i in lines_list:
             key, value = i.split(":")
-            self.setting.update({key: int(value)})
+            self.setting.update({key: float(value)})
 
         # Declare and initialize motor objects from saved Line_Status
         self.leftMotor = Motor("L", self.setting["Line_Status_L"])
