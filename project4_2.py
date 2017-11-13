@@ -34,11 +34,11 @@ try :
             obstacle += 1
             car.stop()
             time.sleep(0.1)
-            car.swing_turn("R") 
+            car.point_turn("R")
             car.run("F",50,1.1)
             car.stop()
             time.sleep(0.1)
-            car.swing_turn("L") 
+            car.point_turn("L")
             car.run("F", 50,1) 
 except KeyboardInterrupt :
     car.stop() 
