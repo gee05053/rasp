@@ -242,3 +242,24 @@ class RasCar:
         if not running_time == -1:
             time.sleep(running_time)
             self.stop()
+
+    def curve_turn2(self, direction):
+        # Check argument
+        if not (direction == "L" or direction == "R"):
+            raise Exception("Please put 'L' or 'R' to direction")
+
+        power = self.setting["Curve_Power"]
+        power_plus = self.setting["Curve_Power_Plus"] * 2
+        if direction == "L":
+            self.leftMotor.run("F", power)
+            self.rightMotor.run("F", power + power_plus)
+            running_time = self.setting["Curve_L"]
+        elif direction == "R":
+            self.leftMotor.run("F", power + power_plus)
+            self.rightMotor.run("F", power)
+            running_time = self.setting["Curve_R"]
+
+        if not running_time == -1:
+            time.sleep(running_time)
+            self.stop()
+
