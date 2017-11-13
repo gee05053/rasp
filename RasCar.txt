@@ -1,0 +1,12 @@
+Point_Power:90
+Point_L:0.51
+Point_R:0.51
+Swing_Power:90
+Swing_L:0.6
+Swing_R:0.45
+Curve_Power:17
+Curve_Power_Plus:20
+Curve_L:-1
+Curve_R:-1
+Line_Status_L:0
+Line_Status_R:0

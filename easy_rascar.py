@@ -93,7 +93,7 @@ class UltraSonicSensor:
 
     def get_distance(self):
         GPIO.output(self.trig, False)
-        time.sleep(0.1)
+        time.sleep(0.05)
         GPIO.output(self.trig, True)
         time.sleep(0.00001)
         GPIO.output(self.trig, False)
@@ -249,7 +249,7 @@ class RasCar:
             raise Exception("Please put 'L' or 'R' to direction")
 
         power = self.setting["Curve_Power"]
-        power_plus = self.setting["Curve_Power_Plus"] * 2
+        power_plus = self.setting["Curve_Power_Plus"] * 3
         if direction == "L":
             self.leftMotor.run("F", power)
             self.rightMotor.run("F", power + power_plus)

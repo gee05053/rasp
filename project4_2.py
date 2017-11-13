@@ -2,7 +2,7 @@ from easy_rascar import RasCar, TrackingSensor, UltraSonicSensor
 import time
 
 car = RasCar()
-dis = 20
+dis = 15
 obstacle = 1
 
 try :
@@ -12,13 +12,15 @@ try :
         print(get_tracking)
         print("Distance :", get_distance)
         if get_distance > dis : 
-            if get_tracking == [0,1,1,1,1] or get_tracking == [1,0,1,1,1] or get_tracking == [1,0,0,1,1]:
+            if get_tracking == [1,0,1,1,1] or get_tracking == [1,0,0,1,1]:
                 car.curve_turn("L")
-            elif get_tracking == [0,0,1,1,1] :
+            elif get_tracking == [0,0,1,1,1] or get_tracking == [0,1,1,1,1]:
                 car.curve_turn2("L")
             elif get_tracking == [1,1,1,1,0] or get_tracking == [1,1,1,0,1] or get_tracking == [1,1,0,0,1]:
                 car.curve_turn("R")
             elif get_tracking == [1,1,1,0,0] :
+                car.curve_turn2("R")
+            elif get_tracking == [1,0,0,0,1] or get_tracking == [0,0,0,0,1] :
                 car.curve_turn2("R")
             elif get_tracking == [1,1,1,1,1] :
                 car.curve_turn2("L")
@@ -26,25 +28,17 @@ try :
                 car.stop()
                 break 
             else :
-                car.run("F", 20)
+                car.run("F", 40)
             print("Obstacle :", obstacle)
         else :
             obstacle += 1
             car.stop()
-            time.sleep(1)
-            car.swing_turn("R")
+            time.sleep(0.1)
+            car.swing_turn("R") 
+            car.run("F",50,1.1)
             car.stop()
-            time.sleep(1)
-            car.run("F",35,1)
-            car.swing_turn("L")
-            car.stop()
-            time.sleep(1)
-            car.run("F", 35)
-            car.stop()
-            time.sleep(1)
-            car.curve_turn("L")
-            car.stop()
-            time.sleep(1)
-            car.run("F", 35, 0.5)
+            time.sleep(0.1)
+            car.swing_turn("L") 
+            car.run("F", 50,1) 
 except KeyboardInterrupt :
     car.stop() 
