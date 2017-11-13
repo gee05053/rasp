@@ -15,16 +15,16 @@ try :
             if get_tracking == [0,1,1,1,1] or get_tracking == [1,0,1,1,1] or get_tracking == [1,0,0,1,1]:
                 car.curve_turn("L")
             elif get_tracking == [0,0,1,1,1] :
-                car.curve_turn2("L")
+                car.curve_turn("L")
             elif get_tracking == [1,1,1,1,0] or get_tracking == [1,1,1,0,1] or get_tracking == [1,1,0,0,1]:
                 car.curve_turn("R")
             elif get_tracking == [1,1,1,0,0] :
-                car.curve_turn2("R")
+                car.curve_turn("R")
             elif get_tracking == [0,0,0,0,0] :
                 car.stop()
                 break 
             else :
-                car.run("F", 35)
+                car.run("F", 15)
             print("Obstacle :", obstacle)
         else :
             obstacle += 1
