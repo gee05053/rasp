@@ -20,7 +20,7 @@ try :
                 car.stop()
                 break 
             else :
-                car.run("F", 15)
+                car.run("F", 20)
             print("Obstacle :", obstacle)
         else :
             obstacle += 1
