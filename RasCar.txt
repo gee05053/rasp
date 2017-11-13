@@ -4,8 +4,10 @@ Point_R:0.3
 Swing_Power:90
 Swing_L:0.65
 Swing_R:0.45
-Curve_Power:16
-Curve_Power_Plus:20
+Curve_Power:60
+Curve_Power_Plus:15
+Curve_Power2:15
+Curve_Power_Plus2:25
 Curve_L:-1
 Curve_R:-1
 Line_Status_L:0
