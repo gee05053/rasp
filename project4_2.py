@@ -12,9 +12,9 @@ try :
         print(get_tracking)
         print("Distance :", get_distance)
         if get_distance > dis :
-            if get_tracking == [0,1,1,1,1] or get_tracking == [0,0,1,1,1] or get_tracking == [1,0,1,1,1] :
+            if get_tracking == [0,1,1,1,1] or get_tracking == [0,0,1,1,1] or get_tracking == [1,0,1,1,1] or get_tracking == [1,0,0,1,1]:
                 car.curve_turn("L")
-            elif get_tracking == [1,1,1,1,0] or get_tracking == [1,1,1,0,0] or get_tracking == [1,1,1,0,1] :
+            elif get_tracking == [1,1,1,1,0] or get_tracking == [1,1,1,0,0] or get_tracking == [1,1,1,0,1] or get_tracking == [1,1,0,0,1]:
                 car.curve_turn("R")
             elif get_tracking == [0,0,0,0,0] :
                 car.stop()
