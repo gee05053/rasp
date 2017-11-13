@@ -20,7 +20,7 @@ try :
                 car.curve_turn("R")
             elif get_tracking == [1,1,1,0,0] :
                 car.curve_turn2("R")
-            elif get_tracking == [1,0,0,0,1] or get_tracking == [0,0,0,0,1] :
+            elif get_tracking == [1,0,0,0,1] or get_tracking == [0,0,0,0,1] or get_tracking == [0,0,0,1,1]:
                 car.curve_turn2("R")
             elif get_tracking == [1,1,1,1,1] :
                 car.curve_turn2("L")
@@ -35,10 +35,11 @@ try :
             car.stop()
             time.sleep(0.1)
             car.point_turn("R")
-            car.run("F",50,1.1)
+            car.run("F",50,1.4)
             car.stop()
             time.sleep(0.1)
             car.point_turn("L")
-            car.run("F", 50,1) 
+            car.run("F",20, 1)
+
 except KeyboardInterrupt :
     car.stop() 
