@@ -248,8 +248,8 @@ class RasCar:
         if not (direction == "L" or direction == "R"):
             raise Exception("Please put 'L' or 'R' to direction")
 
-        power = self.setting["Curve_Power"]
-        power_plus = self.setting["Curve_Power_Plus"] * 3
+        power = self.setting["Curve_Power2"]
+        power_plus = self.setting["Curve_Power_Plus2"]
         if direction == "L":
             self.leftMotor.run("F", power)
             self.rightMotor.run("F", power + power_plus)
