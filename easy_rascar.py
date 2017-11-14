@@ -186,80 +186,67 @@ class RasCar:
             time.sleep(running_time)
             self.stop()
 
-    def swing_turn(self, direction):
+    def swing_turn(self, direction, power="Read", running_time="Read"):
         # Check argument
         if not (direction == "L" or direction == "R"):
             raise Exception("Please put 'L' or 'R' to direction")
-
-        power = self.setting["Swing_Power"]
+        if power == "Read":
+            power = self.setting["Swing_Power"]
         if direction == "L":
             self.rightMotor.perfect_stop()
             self.leftMotor.run("B", power)
-            running_time = self.setting["Swing_L"]
+            if running_time == "Read":
+                running_time = self.setting["Swing_L"]
         elif direction == "R":
             self.leftMotor.perfect_stop()
             self.rightMotor.run("B", power)
-            running_time = self.setting["Swing_R"]
+            if running_time == "Read":
+                running_time = self.setting["Swing_R"]
         if not running_time == -1:
             time.sleep(running_time)
             self.stop()
 
-    def point_turn(self, direction):
+    def point_turn(self, direction, power="Read", running_time="Read"):
         # Check argument
         if not (direction == "L" or direction == "R"):
             raise Exception("Please put 'L' or 'R' to direction")
-
-        power = self.setting["Point_Power"]
+        if power == "Read":
+            power = self.setting["Point_Power"]
         if direction == "L":
             self.leftMotor.run("B", power)
             self.rightMotor.run("F", power)
-            running_time = self.setting["Point_L"]
+            if running_time == "Read":
+                running_time = self.setting["Point_L"]
         elif direction == "R":
             self.leftMotor.run("F", power)
             self.rightMotor.run("B", power)
-            running_time = self.setting["Point_R"]
+            if running_time == "Read":
+                running_time = self.setting["Point_R"]
 
         if not running_time == -1:
             time.sleep(running_time)
             self.stop()
 
-    def curve_turn(self, direction):
+    def curve_turn(self, direction, power="Read", power_plus="Read", running_time="Read"):
         # Check argument
         if not (direction == "L" or direction == "R"):
             raise Exception("Please put 'L' or 'R' to direction")
 
-        power = self.setting["Curve_Power"]
-        power_plus = self.setting["Curve_Power_Plus"]
+        if power == "Read":
+            power = self.setting["Curve_Power"]
+        if power_plus == "Read":
+            power_plus = self.setting["Curve_Power_Plus"]
         if direction == "L":
             self.leftMotor.run("F", power)
             self.rightMotor.run("F", power + power_plus)
-            running_time = self.setting["Curve_L"]
+            if running_time == "Read":
+                running_time = self.setting["Curve_L"]
         elif direction == "R":
             self.leftMotor.run("F", power + power_plus)
             self.rightMotor.run("F", power)
-            running_time = self.setting["Curve_R"]
+            if running_time == "Read":
+                running_time = self.setting["Curve_R"]
 
         if not running_time == -1:
             time.sleep(running_time)
             self.stop()
-
-    def curve_turn2(self, direction):
-        # Check argument
-        if not (direction == "L" or direction == "R"):
-            raise Exception("Please put 'L' or 'R' to direction")
-
-        power = self.setting["Curve_Power2"]
-        power_plus = self.setting["Curve_Power_Plus2"]
-        if direction == "L":
-            self.leftMotor.run("F", power)
-            self.rightMotor.run("F", power + power_plus)
-            running_time = self.setting["Curve_L"]
-        elif direction == "R":
-            self.leftMotor.run("F", power + power_plus)
-            self.rightMotor.run("F", power)
-            running_time = self.setting["Curve_R"]
-
-        if not running_time == -1:
-            time.sleep(running_time)
-            self.stop()
-
