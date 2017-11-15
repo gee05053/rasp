@@ -33,19 +33,19 @@ try :
             obstacle += 1
             if obstacle == 1 :
                 car.point_turn("R",90,0.26)
-                car.run("F",40,0.9)
-                car.point_turn("L",90,0.52)
+                car.run("F",40,1)
+                car.point_turn("L",90,0.55)
             else :
                 car.point_turn("R",90,0.26)
                 car.run("F",40,0.9)
-                car.point_turn("L",90,0.6)
+                car.point_turn("L",90,0.63)
             car.stop()
             time.sleep(0.1)
             while car.trackingSensor.scan().count(0) < 2 :
                 car.run("F", 20)
-            car.run("F", 20, 0.3)
+            car.run("F", 20, 0.5)
             while car.trackingSensor.scan().count(0) < 2 :
-                car.point_turn("R",40,-1)
+                car.point_turn("R",35,-1)
 
 except KeyboardInterrupt :
     car.stop()
