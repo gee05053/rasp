@@ -3,7 +3,7 @@ import time
 
 car = RasCar()
 dis = 14.5
-obstacle = 1
+obstacle = 0
 
 try :
     while True :
@@ -31,9 +31,14 @@ try :
             print("Obstacle :", obstacle)
         else :
             obstacle += 1
-            car.point_turn("R",90,0.26)
-            car.run("F",40,0.9)
-            car.point_turn("L",90,0.47)
+            if obstacle == 1 :
+                car.point_turn("R",90,0.26)
+                car.run("F",40,0.9)
+                car.point_turn("L",90,0.47)
+            else :
+                car.point_turn("R",90,0.26)
+                car.run("F",40,0.9)
+                car.point_turn("L",90,0.5)
             car.stop()
             time.sleep(0.1)
             while car.trackingSensor.scan().count(0) < 2 :
