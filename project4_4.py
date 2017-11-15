@@ -31,16 +31,14 @@ try :
             print("Obstacle :", obstacle)
         else :
             obstacle += 1
-            car.stop()
-            time.sleep(0.1)
-            car.curve_turn("R",0.5,95)
-            car.run("F",40,0.3)
-            car.curve_turn("L",25,25)
+            car.point_turn("R",90,0.26)
+            car.run("F",40,0.8)
+            car.point_turn("L",90,0.44)
             while car.trackingSensor.scan().count(0) < 2 :
                 car.run("F", 20)
             car.run("F", 20, 0.3)
             while car.trackingSensor.scan().count(0) < 2 :
-                car.curve_turn("R",20,20)
+                car.point_turn("R",40,-1)
 
 except KeyboardInterrupt :
     car.stop()
