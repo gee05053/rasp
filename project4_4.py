@@ -31,7 +31,9 @@ try :
             print("Obstacle :", obstacle)
         else :
             obstacle += 1
-            car.curve_turn("R",25,25)
+            car.stop()
+            time.sleep(0.1)
+            car.curve_turn("R",0.5,95)
             car.run("F",40,0.3)
             car.curve_turn("L",25,25)
             while car.trackingSensor.scan().count(0) < 2 :
