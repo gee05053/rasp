@@ -1,4 +1,4 @@
-from easy_rascar import RasCar, TrackingSensor, UltraSonicSensor
+from easy_rascar2 import RasCar, TrackingSensor, UltraSonicSensor
 import time
 
 car = RasCar()
