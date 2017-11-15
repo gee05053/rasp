@@ -66,6 +66,7 @@ try:
     while True:
         get_tracking = scan() #get tracking list ex) ["1","1","1","1","1"], ["0","0","0","0","0"]
         get_distance = getDistance() #get distance between car and obstacle
+        print(get_tracking)
         print("Distance =", get_distance)
         if get_distance >= dis :
             if get_tracking == ["0","1","1","1","1"] or get_tracking == ["0","0","1","1","1"]:
