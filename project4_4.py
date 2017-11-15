@@ -1,4 +1,4 @@
-from easy_rascar2 import RasCar, TrackingSensor, UltraSonicSensor
+from easy_rascar import RasCar, TrackingSensor, UltraSonicSensor
 import time
 
 car = RasCar()
@@ -19,7 +19,7 @@ try :
             elif get_tracking == [1,1,1,1,1] or get_tracking == [0,1,1,1,1] or get_tracking == [1,0,0,0,0]:
                 car.curve_turn("L",0.5,95,-1)
             elif get_tracking == [1,1,1,1,0] or get_tracking == [1,1,1,0,1] or get_tracking == [1,1,0,0,1]:
-                car.curve_turn("R",15,16,-1)
+                car.curve_turn("R",15,15,-1)
             elif get_tracking == [1,0,0,0,1] or get_tracking == [0,0,0,0,1] or get_tracking == [0,0,0,1,1] or get_tracking == [1,1,1,0,0] \
                     or get_tracking == [1,1,0,0,0]:
                 car.curve_turn("R",15,25,-1)
@@ -34,11 +34,11 @@ try :
             if obstacle == 1 :
                 car.point_turn("R",90,0.26)
                 car.run("F",40,0.9)
-                car.point_turn("L",90,0.47)
+                car.point_turn("L",90,0.52)
             else :
-                car.point_turn2("R",90,0.26)
+                car.point_turn("R",90,0.26)
                 car.run("F",40,0.9)
-                car.point_turn2("L",90,0.5)
+                car.point_turn("L",90,0.6)
             car.stop()
             time.sleep(0.1)
             while car.trackingSensor.scan().count(0) < 2 :
