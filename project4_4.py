@@ -32,8 +32,10 @@ try :
         else :
             obstacle += 1
             car.point_turn("R",90,0.26)
-            car.run("F",40,0.8)
-            car.point_turn("L",90,0.44)
+            car.run("F",40,0.9)
+            car.point_turn("L",90,0.47)
+            car.stop()
+            time.sleep(0.1)
             while car.trackingSensor.scan().count(0) < 2 :
                 car.run("F", 20)
             car.run("F", 20, 0.3)
