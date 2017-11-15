@@ -36,9 +36,9 @@ try :
                 car.run("F",40,0.9)
                 car.point_turn("L",90,0.47)
             else :
-                car.point_turn("R",90,0.26)
+                car.point_turn2("R",90,0.26)
                 car.run("F",40,0.9)
-                car.point_turn("L",90,0.5)
+                car.point_turn2("L",90,0.5)
             car.stop()
             time.sleep(0.1)
             while car.trackingSensor.scan().count(0) < 2 :
