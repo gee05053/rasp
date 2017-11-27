@@ -35,7 +35,7 @@ try :
         elif get_tracking == [0,0,0,1,1] :
             car.run("F", 10, 0.5)
             get_tracking2 = car.trackingSensor.scan()
-            if get_tracking2 == [1,1,0,1,1] : # go straight
+            if get_tracking2 == [1,1,0,1,1] or get_tracking2 == [1,1,0,0,1] or get_tracking2 == [1,0,0,1,1]: # go straight
                 continue
             else : # left turn
                 car.swing_turn("L", 90, 0.3) # 45도 왼쪽 회전
