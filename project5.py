@@ -46,6 +46,14 @@ try :
                         break
                     else :
                         car.swing_turn("L", 90, 0.1)
+        elif get_tracking == [1,1,1,1,1] :
+            car.swing_turn("R", 90, 0.3)
+            while True :
+                get_tracking2 = car.trackingSensor.scan()
+                if get_tracking2 == [1,1,0,1,1] or get_tracking2 == [1,1,0,0,1] or get_tracking2 == [1,0,0,1,1] :
+                    break
+                else :
+                    car.swing_turn("R", 90, 0.1)
         else :
             car.run("F",35)
 
