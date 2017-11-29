@@ -19,7 +19,7 @@ try:
             car.curve_turn("R", 30, 32, 0.02)
 
         # right turn or stop
-        elif get_tracking == [1, 1, 0, 0, 0] or get_tracking == [0, 0, 0, 0, 0] or get_tracking == [1, 0, 0, 0, 0]:
+        elif get_tracking == [1, 1, 0, 0, 0] or get_tracking == [1, 0, 0, 0, 0] or get_tracking == [0, 0, 0, 0, 0]:
             car.run("F", 35, 0.6)
             get_tracking2 = car.trackingSensor.scan()
             if get_tracking2 == [0, 0, 0, 0, 0]:  # stop
@@ -36,16 +36,14 @@ try:
                     else:
                         car.swing_turn("R", 90, 0.1)
                         car.stop()
-                        time.sleep(0.2)
+                        time.sleep(0.1)
 
         # left turn or go straight
         elif get_tracking == [0, 0, 0, 1, 1] or get_tracking == [0, 0, 0, 0, 1]:
             car.run("F", 35, 0.5)
             get_tracking2 = car.trackingSensor.scan()
-            if get_tracking2 == [1, 1, 0, 1, 1] or get_tracking2 == [1, 1, 0, 0, 1] or get_tracking2 == [1, 0, 0, 1,
-                                                                                                         1]:  # go straight
-                continue
-            else:  # left turn
+            # If there is no line
+            if get_tracking2 == [1, 1, 1, 1, 1]:
                 car.swing_turn("L", 90, 0.3)  # 45도 왼쪽 회전
                 while True:
                     get_tracking3 = car.trackingSensor.scan()
@@ -55,6 +53,10 @@ try:
                         break
                     else:
                         car.swing_turn("L", 90, 0.1)
+                        car.stop()
+                        time.sleep(0.1)
+            else:  # left turn
+                continue
         elif get_tracking == [1, 1, 1, 1, 1]:
             car.swing_turn("R", 90, 0.3)
             while True:
@@ -64,6 +66,8 @@ try:
                     break
                 else:
                     car.swing_turn("R", 90, 0.1)
+                    car.stop()
+                    time.sleep(0.1)
         else:
             car.run("F", 35)
 
