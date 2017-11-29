@@ -3,6 +3,19 @@ import time
 
 car = RasCar()
 
+
+def rotates_until_reaches_black_line(direction, speed, running_time):
+    while True:
+        current_tracking_sensor_status = car.trackingSensor.scan()
+        if current_tracking_sensor_status in ([1, 1, 0, 1, 1], [1, 0, 0, 1, 1], [1, 1, 0, 0, 1]):
+            break
+        else:
+            car.swing_turn(direction, speed, running_time)
+            car.stop()
+            # gap
+            time.sleep(0.1)
+
+
 try:
     while True:
         get_tracking = car.trackingSensor.scan()
@@ -27,16 +40,7 @@ try:
                 break
             else:  # right turn
                 car.swing_turn("R", 90, 0.2)
-                while True:  # [1,1,0,1,1] 될 때 까지 회전
-                    get_tracking3 = car.trackingSensor.scan()
-                    if get_tracking3 == [1, 1, 0, 1, 1] or get_tracking3 == [1, 0, 0, 1, 1] or get_tracking3 == [1, 1,
-                                                                                                                 0, 0,
-                                                                                                                 1]:
-                        break
-                    else:
-                        car.swing_turn("R", 90, 0.1)
-                        car.stop()
-                        time.sleep(0.1)
+                rotates_until_reaches_black_line("R", 90, 0.1)
 
         # left turn or go straight
         elif get_tracking == [0, 0, 0, 1, 1] or get_tracking == [0, 0, 0, 0, 1]:
@@ -45,29 +49,12 @@ try:
             # If there is no line
             if get_tracking2 == [1, 1, 1, 1, 1]:
                 car.swing_turn("L", 90, 0.3)  # 45도 왼쪽 회전
-                while True:
-                    get_tracking3 = car.trackingSensor.scan()
-                    if get_tracking3 == [1, 1, 0, 1, 1] or get_tracking3 == [1, 0, 0, 1, 1] or get_tracking3 == [1, 1,
-                                                                                                                 0, 0,
-                                                                                                                 1]:
-                        break
-                    else:
-                        car.swing_turn("L", 90, 0.1)
-                        car.stop()
-                        time.sleep(0.1)
+                rotates_until_reaches_black_line("L", 90, 0.1)
             else:  # left turn
                 continue
         elif get_tracking == [1, 1, 1, 1, 1]:
             car.swing_turn("R", 90, 0.3)
-            while True:
-                get_tracking2 = car.trackingSensor.scan()
-                if get_tracking2 == [1, 1, 0, 1, 1] or get_tracking2 == [1, 1, 0, 0, 1] or get_tracking2 == [1, 0, 0, 1,
-                                                                                                             1]:
-                    break
-                else:
-                    car.swing_turn("R", 90, 0.1)
-                    car.stop()
-                    time.sleep(0.1)
+            rotates_until_reaches_black_line("R", 90, 0.1)
         else:
             car.run("F", 35)
 
