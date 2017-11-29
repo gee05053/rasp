@@ -9,10 +9,14 @@ try :
         print(get_tracking)
 
         # line tracing
-        if get_tracking == [1,0,0,1,1] or get_tracking == [1,0,1,1,1] or get_tracking == [0,0,1,1,1] :
+        if get_tracking == [1,0,0,1,1] :
             car.curve_turn("L",25,27,0.02)
-        elif get_tracking == [1,1,0,0,1] or get_tracking == [1,1,1,0,1] or get_tracking == [1,1,1,0,0]:
+        elif get_tracking == [1,0,1,1,1] :
+            car.curve_turn("L",30,32,0.02)
+        elif get_tracking == [1,1,0,0,1] :
             car.curve_turn("R",25,27,0.02)
+        elif get_tracking == [1,1,1,0,1] :
+            car.curve_turn("R",30,32,0.02)
 
         # right turn or stop
         elif get_tracking == [1,1,0,0,0] or get_tracking == [0,0,0,0,0] or get_tracking == [1,0,0,0,0] :
