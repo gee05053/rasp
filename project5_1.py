@@ -34,18 +34,18 @@ try :
             car.curve_turn("R", 20, 29, 0.05)
         elif get_tracking[4] == 0  :
             car.run("F", 30, 0.67)
-            car.point_turn("R", 90, 0.1)
+            car.point_turn("R", 90, 0.5)
             rotates_until_reaches_black_line("R", 90, 0.05)
         elif get_tracking == [1,1,1,1,1] :
             car.run("F", 30, 0.67)
-            car.point_turn("L", 90, 0.1)
+            car.point_turn("L", 90, 0.5)
             rotates_until_reaches_black_line("L", 90, 0.05)
         elif get_tracking == [0,0,0,1,1] or get_tracking == [0,1,0,1,1] :
             car.run("F", 30, 0.67)
             tracking = car.trackingSensor.scan()
-            if tracking == [1,1,1,1,1] :
-                car.point_turn("L", 90, 0.1)
-                rotates_until_reaches_black_line("L", 90, 0.05)
+            if tracking == [1,1,1,1,1]:
+                #car.point_turn("L", 90, 0.1)
+                rotates_until_reaches_black_line("L", 90, 0.05, "Swing")
             else :
                 continue
         else :
