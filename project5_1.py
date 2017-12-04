@@ -1,21 +1,23 @@
 from easy_rascar import RasCar, TrackingSensor
 import time
 
-car = RasCar()
-
 
 def rotates_until_reaches_black_line(direction, speed, running_time):
     while True:
         current_tracking_sensor_status = car.trackingSensor.scan()
-        if direction == "R" and current_tracking_sensor_status in ([1, 1, 0, 1, 1], [1,0,0,1,1], [1,0,1,1,1]):
+        print("Turn:", current_tracking_sensor_status)
+        if direction == "R" and current_tracking_sensor_status in ([1,1,0,0,1], [1,1,0,1,1], [1,0,0,1,1], [1,0,1,1,1]):
             break
-        if direction == "L" and current_tracking_sensor_status in ([1,1,0,1,1], [1,1,0,0,1], [1,1,1,0,1]) :
+        elif direction == "L" and current_tracking_sensor_status in ([1,0,0,1,1], [1,1,0,1,1], [1,1,0,0,1], [1,1,1,0,1]) :
             break
         else:
             car.point_turn(direction, speed, running_time)
             car.stop()
             # gap
-            time.sleep(0.13)
+            time.sleep(0.1)
+
+
+car = RasCar()
 
 try :
     while True :
@@ -23,27 +25,27 @@ try :
         print(get_tracking)
 
         if get_tracking == [1,0,0,1,1] :
-            car.curve_turn("L", 10, 14, 0.015)
+            car.curve_turn("L", 10, 28, 0.05)
         elif get_tracking == [1,1,0,0,1] :
-            car.curve_turn("R", 10, 14, 0.015)
+            car.curve_turn("R", 10, 28, 0.05)
         elif get_tracking == [1,0,1,1,1] :
-            car.curve_turn("L", 10, 12, 0.015)
+            car.curve_turn("L", 10, 20, 0.05)
         elif get_tracking == [1,1,1,0,1] :
-            car.curve_turn("R", 10, 12, 0.015)
-        elif get_tracking == [1,1,0,0,0] or get_tracking == [1,1,0,1,0] :
-            car.run("F", 35, 0.7)
-            car.point_turn("R", 90, 0.2)
-            rotates_until_reaches_black_line("R", 90, 0.07)
+            car.curve_turn("R", 10, 20, 0.05)
+        elif get_tracking[4] == 0  :
+            car.run("F", 30, 0.5)
+            car.point_turn("R", 40, 0.2)
+            rotates_until_reaches_black_line("R", 70, 0.07)
         elif get_tracking == [1,1,1,1,1] :
-            car.run("F", 20, 0.7)
-            car.point_turn("R", 90, 0.2)
-            rotates_until_reaches_black_line("R", 90, 0.07)
-        elif get_tracking == [0,0,0,1,1] :
-            car.run("F", 30, 0.7)
-            car.point_turn("L", 90, 0.2)
-            rotates_until_reaches_black_line("L", 90, 0.07)
+            car.run("F", 30, 0.45)
+            car.point_turn("L", 40, 0.2)
+            rotates_until_reaches_black_line("R", 70, 0.07)
+        elif get_tracking == [0,0,0,1,1] or get_tracking == [0,1,0,1,1] :
+            car.run("F", 30, 0.43)
+            car.point_turn("L", 40, 0.2)
+            rotates_until_reaches_black_line("L", 70, 0.07)
         else :
-            car.run("F", 15)
+            car.run("F", 10)
 
 
 except KeyboardInterrupt:
