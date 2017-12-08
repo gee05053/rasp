@@ -2,7 +2,7 @@ from easy_rascar import RasCarUsingTrackingSensor
 import time
 
 
-def rotates_until_reaches_black_line_point_turn(direction, speed, running_time):
+def rotates_until_reaches_black_line_using_point_turn(direction, speed, running_time):
     while True:
         tracking_status = car.trackingSensor.scan()
         print("Turn:", tracking_status)
@@ -19,7 +19,7 @@ def rotates_until_reaches_black_line_point_turn(direction, speed, running_time):
             time.sleep(0.1)
 
 
-def rotates_until_reaches_black_line_swing_turn(direction, speed, running_time):
+def rotates_until_reaches_black_line_using_swing_turn(direction, speed, running_time):
     while True:
         tracking_status = car.trackingSensor.scan()
         print("Turn:", tracking_status)
@@ -45,11 +45,13 @@ while True:
     if tracking_status == [0, 0, 0, 0, 0]:
         car.run("F", 30, 0.15)
         inner_tracking_status = car.trackingSensor.scan()
+        print("Inner_tracking_status :", inner_tracking_status)
         if inner_tracking_status == tracking_status:
+            print("car stopped. beacuse It sensors the finishing line")
             break
         else:
             car.swing_turn("R", 90, 0.3)
-            rotates_until_reaches_black_line_swing_turn("R", 90, 0.05)
+            rotates_until_reaches_black_line_using_swing_turn("R", 90, 0.05)
     elif tracking_status == [1, 0, 0, 1, 1]:
         car.curve_turn("L", 20, 35, 0.05)
     elif tracking_status == [1, 1, 0, 0, 1]:
@@ -61,17 +63,17 @@ while True:
     elif tracking_status[4] == 0:
         car.run("F", 30, 0.2)
         car.swing_turn("R", 90, 0.3)
-        rotates_until_reaches_black_line_swing_turn("R", 90, 0.05)
+        rotates_until_reaches_black_line_using_swing_turn("R", 90, 0.05)
     elif tracking_status == [1, 1, 1, 1, 1]:
         car.run("F", 30, 0.6)
         car.point_turn("L", 90, 0.3)
-        rotates_until_reaches_black_line_point_turn("L", 90, 0.06)
+        rotates_until_reaches_black_line_using_point_turn("L", 90, 0.06)
     elif tracking_status == [0, 0, 0, 1, 1] or tracking_status == [0, 1, 0, 1, 1]:
         car.run("F", 30, 0.2)
         inner_tracking_status = car.trackingSensor.scan()
         if inner_tracking_status == [1, 1, 1, 1, 1]:
             car.swing_turn("L", 90, 0.3)
-            rotates_until_reaches_black_line_swing_turn("L", 90, 0.05)
+            rotates_until_reaches_black_line_using_swing_turn("L", 90, 0.05)
         else:
             continue
     else:
