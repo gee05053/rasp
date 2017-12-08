@@ -20,11 +20,6 @@ class RasCar:
         self.leftMotor = Motor("L", line_status_of_left_motor)
         self.rightMotor = Motor("R", line_status_of_right_motor)
 
-    def __del__(self):
-        self.leftMotor.perfect_stop()
-        self.rightMotor.perfect_stop()
-        GPIO.cleanup()
-
     def stop(self):
         self.leftMotor.stop()
         self.rightMotor.stop()
