@@ -21,6 +21,8 @@ def rotates_until_reaches_black_line_swing_turn(direction, speed, running_time):
     while True:
         current_tracking_sensor_status = car.trackingSensor.scan()
         print("Turn:", current_tracking_sensor_status)
+        if current_tracking_sensor_status == [0,0,0,0,0] :
+            break
         if direction == "R" and current_tracking_sensor_status in ([1,1,0,0,1], [1,1,0,1,1], [1,0,0,1,1], [1,0,1,1,1]):
             break
         elif direction == "L" and current_tracking_sensor_status in ([1,0,0,1,1], [1,1,0,1,1], [1,1,0,0,1], [1,1,1,0,1]) :
@@ -40,32 +42,38 @@ try :
         print(get_tracking)
 
         #if get_tracking == [0,0,0,0,0] :
-        #    car.run("F", 30, 0.17)
+        #    car.run("F", 30, 0.1)
         #    tracking = car.trackingSensor.scan()
-        #    if tracking == get_tracking :
+        #    if tracking == [0,0,0,0,0] :
+        #        car.stop()
         #        break
         #    else :
-        #        rotates_until_reaches_black_line_swing_turn("R", 50, -1)
+        #        car.run("F", 30, 0.05)
+        #        car.swing_turn("R", 90, 0.25)
+        #        rotates_until_reaches_black_line_swing_turn("R", 40, -1)
         if get_tracking == [1,0,0,1,1] :
-            car.curve_turn("L", 30, 50)
+            car.curve_turn("L", 30, 50, -1)
         elif get_tracking == [1,1,0,0,1] :
-            car.curve_turn("R", 30, 50)
+            car.curve_turn("R", 30, 50, -1)
         elif get_tracking == [1,0,1,1,1] :
-            car.curve_turn("L", 30, 36)
+            car.curve_turn("L", 30, 35, -1)
         elif get_tracking == [1,1,1,0,1] :
-            car.curve_turn("R", 30, 36)
+            car.curve_turn("R", 30, 35, -1)
         elif get_tracking[4] == 0  :
-            car.run("F", 30, 0.25)
-            car.swing_turn("R", 90, 0.27)
-            rotates_until_reaches_black_line_swing_turn("R", 45, -1)
+            car.run("F", 30, 0.26)
+            tracking = car.trackingSensor.scan()
+            if tracking == [0,0,0,0,0] :
+                break
+            car.swing_turn("R", 90, 0.25)
+            rotates_until_reaches_black_line_swing_turn("R", 70, -1)
         elif get_tracking == [1,1,1,1,1] :
-            car.run("F", 30, 0.6)
-            rotates_until_reaches_black_line_point_turn("L", 47, -1)
+            car.run("F", 30, 0.4)
+            rotates_until_reaches_black_line_point_turn("L", 45, -1)
         elif get_tracking == [0,0,0,1,1] or get_tracking == [0,1,0,1,1] :
             car.run("F", 30, 0.2)
             tracking = car.trackingSensor.scan()
             if tracking == [1,1,1,1,1]:
-                rotates_until_reaches_black_line_swing_turn("L", 55, -1)
+                rotates_until_reaches_black_line_swing_turn("L", 45, -1)
             else :
                 continue
         else :
